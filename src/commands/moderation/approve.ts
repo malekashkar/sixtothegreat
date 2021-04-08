@@ -8,6 +8,7 @@ import embeds from "../../utils/embeds";
 export default class ApproveCommand extends Command {
   cmdName = "approve";
   description = "Approve one of the suggestions by their message ID.";
+  adminPermissions = true;
 
   async run(message: Message, args: string[], configDoc: DocumentType<Config>) {
     const suggestionId = !isNaN(parseInt(args[0]))

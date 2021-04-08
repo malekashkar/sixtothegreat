@@ -7,6 +7,7 @@ import embeds from "../../utils/embeds";
 export default class VerifyRoleCommand extends Command {
   cmdName = "verifyrole";
   description = "Set the role given when being verified";
+  adminPermissions = true;
 
   async run(
     message: Message,

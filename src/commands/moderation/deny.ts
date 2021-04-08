@@ -8,6 +8,7 @@ import embeds from "../../utils/embeds";
 export default class DenyCommand extends Command {
   cmdName = "deny";
   description = "Deny one of the suggestions by their message ID.";
+  adminPermissions = true;
 
   async run(message: Message, args: string[], configDoc: DocumentType<Config>) {
     const suggestionId = !isNaN(parseInt(args[0]))

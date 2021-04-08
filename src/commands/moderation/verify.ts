@@ -7,6 +7,7 @@ import embeds from "../../utils/embeds";
 export default class VerifyCommand extends Command {
   cmdName = "verify";
   description = "Send the verification message in a channel.";
+  adminPermissions = true;
 
   async run(
     message: Message,

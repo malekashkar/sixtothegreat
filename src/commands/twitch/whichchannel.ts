@@ -7,6 +7,7 @@ import embeds from "../../utils/embeds";
 export class WhichChannelCommand extends Command {
   cmdName = "witchchannel";
   description = "Select the channel the stream updates should be sent in.";
+  adminPermissions = true;
 
   async run(
     message: Message,

@@ -7,6 +7,7 @@ import embeds from "../../utils/embeds";
 export default class BlockWordsCommand extends Command {
   cmdName = "blockwords";
   description = "Add/remove/list blocked words from the discord.";
+  adminPermissions = true;
 
   async run(message: Message, args: string[], ConfigDoc: DocumentType<Config>) {
     if (!args.length) {

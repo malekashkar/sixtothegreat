@@ -7,6 +7,7 @@ import embeds from "../../utils/embeds";
 export default class BlockChannelsCommand extends Command {
   cmdName = "blockchannels";
   description = "Add/remove/list blocked words from the discord.";
+  adminPermissions = true;
 
   async run(
     message: Message,

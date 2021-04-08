@@ -7,6 +7,7 @@ import embeds from "../../utils/embeds";
 export default class RulesCommand extends Command {
   cmdName = "rules";
   description = "Send the rules message in a channel.";
+  adminPermissions = true;
 
   async run(
     message: Message,

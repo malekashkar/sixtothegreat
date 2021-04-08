@@ -6,6 +6,7 @@ import embeds from "../../utils/embeds";
 export default class AddRoleCommand extends Command {
   cmdName = "addrole";
   description = "Edit a message in the channel to a reaction message.";
+  adminPermissions = true;
 
   async run(message: Message, args: string[]) {
     const messageId = args[0] ? args.shift() : null;

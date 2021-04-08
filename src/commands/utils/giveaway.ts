@@ -8,6 +8,7 @@ import { GiveawayModel } from "../../models/giveaway";
 export default class GiveawayCommand extends Command {
   cmdName = "giveaway";
   description = "Create a new automated giveaway.";
+  adminPermissions = true;
 
   async run(message: Message, args: string[]) {
     const timeframe = args[0] ? ms(args.shift()) : null;

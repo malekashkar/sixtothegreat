@@ -7,6 +7,7 @@ import embeds from "../../utils/embeds";
 export class WhichRoleCommand extends Command {
   cmdName = "witchrole";
   description = "Select the role to be tagged when a streamer goes online.";
+  adminPermissions = true;
 
   async run(message: Message, _args: string[], ConfigDoc: DocumentType<Config>) {
     const role = message.mentions.roles.first();

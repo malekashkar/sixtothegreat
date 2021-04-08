@@ -7,6 +7,7 @@ import embeds from "../../utils/embeds";
 export default class WelcomeCommand extends Command {
   cmdName = "welcome";
   description = "Send the welcome message in a channel.";
+  adminPermissions = true;
 
   async run(
     message: Message,

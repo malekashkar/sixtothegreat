@@ -7,6 +7,7 @@ import embeds from "../../utils/embeds";
 export class WhichUserCommand extends Command {
   cmdName = "witchuser";
   description = "Select the users that will be detected when going live.";
+  adminPermissions = true;
 
   async run(message: Message, args: string[], ConfigDoc: DocumentType<Config>) {
     const user = args[0];
