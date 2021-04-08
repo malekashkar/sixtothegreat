@@ -17,11 +17,6 @@ export function toTitleCase(str: string) {
     .join(" ");
 }
 
-export async function closeTicket(channel: TextChannel, errorMessage: string) {
-  await channel.send(embeds.error(errorMessage));
-  setTimeout(() => channel.delete(), config.timeBeforeTicketClose);
-}
-
 export async function askQuestion(
   channel: TextChannel,
   user: User,
