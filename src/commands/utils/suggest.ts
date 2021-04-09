@@ -43,6 +43,12 @@ export default class SuggestCommand extends Command {
         suggestionData.messageId = suggestionMessage.id;
         await suggestionData.save();
       }
+    } else {
+      await message.channel.send(
+        embeds.error(
+          `Contact administration and let them know that no suggestion channel is set!`
+        )
+      );
     }
   }
 }
