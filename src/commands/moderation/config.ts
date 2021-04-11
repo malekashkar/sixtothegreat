@@ -18,7 +18,7 @@ export default class ConfigCommand extends Command {
       "twitch_notification_channel",
       "twitch_notification_role",
     ];
-    const chosenOption = configOptions.includes(args[0].toLowerCase())
+    const chosenOption = configOptions.includes(args[0]?.toLowerCase())
       ? args.shift().toLowerCase()
       : null;
 
