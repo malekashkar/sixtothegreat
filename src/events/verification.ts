@@ -15,8 +15,8 @@ export default class Verification extends Event {
     });
     if (configDoc) {
       if (
-        configDoc.roles.verificationRole &&
-        configDoc.messageIds.verificationMessageId
+        configDoc.roles?.verificationRole &&
+        configDoc.messageIds?.verificationMessageId
       ) {
         if (configDoc.messageIds.verificationMessageId === message.id) {
           const member = message.guild.members.resolve(user);

@@ -1,6 +1,7 @@
 import { DocumentType } from "@typegoose/typegoose";
 import { Message } from "discord.js";
 import Command from "..";
+import config from "../../config";
 import { Config } from "../../models/config";
 import embeds from "../../utils/embeds";
 
@@ -21,13 +22,7 @@ export default class WelcomeCommand extends Command {
       );
 
     if (configDoc.messageTemplate?.welcome) {
-      await welcomeChannel.send(
-        embeds
-          .empty()
-          .setImage(
-            "https://cdn.discordapp.com/attachments/781691602045239326/784250794258071572/NoxDiscBanner1.png"
-          )
-      );
+      await welcomeChannel.send(embeds.empty().setImage(config.images.welcome));
       await welcomeChannel.send(
         embeds.normal(`Welcome`, configDoc.messageTemplate.welcome)
       );

@@ -54,11 +54,11 @@ export default class ConfigCommand extends Command {
         );
 
       if (configDoc.roles) {
+        configDoc.roles.verificationRole = role.id;
+      } else {
         configDoc.roles = {
           verificationRole: role.id,
         };
-      } else {
-        configDoc.roles.verificationRole = role.id;
       }
       await configDoc.save();
 
@@ -69,7 +69,7 @@ export default class ConfigCommand extends Command {
         )
       );
     } else if (chosenOption === "verification_message") {
-      const templateMessage = args.join("");
+      const templateMessage = args.join(" ");
       if (!templateMessage)
         return message.channel.send(
           embeds.error(`Please provide the template message for verification!`)
@@ -91,7 +91,7 @@ export default class ConfigCommand extends Command {
         )
       );
     } else if (chosenOption === "welcome_message") {
-      const templateMessage = args.join("");
+      const templateMessage = args.join(" ");
       if (!templateMessage)
         return message.channel.send(
           embeds.error(`Please provide the template message for welcoming!`)
@@ -113,7 +113,7 @@ export default class ConfigCommand extends Command {
         )
       );
     } else if (chosenOption === "rules_message") {
-      const templateMessage = args.join("");
+      const templateMessage = args.join(" ");
       if (!templateMessage)
         return message.channel.send(
           embeds.error(`Please provide the template message for the rules!`)

@@ -13,6 +13,10 @@ export default class AddRoleCommand extends Command {
     if (!messageId)
       return message.channel.send(embeds.error(`Please provide a message ID`));
     const reaction = args[0] ? args.shift() : null;
+    if (!reaction)
+      return message.channel.send(
+        embeds.error(`Please provide the reaction for this role!`)
+      );
 
     const role = message.mentions.roles.first();
     if (!role)
@@ -55,7 +59,7 @@ export default class AddRoleCommand extends Command {
         (roleInfo) =>
           `${roleInfo.reaction} <@&${roleInfo.roleId}> ~ ${roleInfo.roleDescription}`
       )
-      .join("\n");
+      .join("\n\n");
     const reactionMessage = await message.channel.messages.fetch(messageId);
     await reactionMessage.edit(embeds.normal(`Reaction Roles`, formatRoles));
     await reactionMessage.react(reaction);

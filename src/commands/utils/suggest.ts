@@ -34,7 +34,7 @@ export default class SuggestCommand extends Command {
             )
         );
 
-        const suggestionMessage = await message.channel.send(
+        const suggestionMessage = await suggestionChannel.send(
           embeds.normal(`Suggestion #${suggestionData.id}`, suggestion)
         );
         await suggestionMessage.react("⬆️");

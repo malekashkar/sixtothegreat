@@ -18,7 +18,7 @@ export default class StreamersCommand extends Command {
         await message.channel.send(
           embeds.normal(
             `Streamer Removed`,
-            `The twitch username **${streamer} has been removed** from the notifications list.`
+            `The twitch username **${streamer}** has been **removed** from the notifications list.`
           )
         );
       } else {
@@ -26,7 +26,7 @@ export default class StreamersCommand extends Command {
         await message.channel.send(
           embeds.normal(
             `Streamer Added`,
-            `The twitch username **${streamer} has been added** to the notifications list.`
+            `The twitch username **${streamer}** has been **added** to the notifications list.`
           )
         );
       }
@@ -35,7 +35,10 @@ export default class StreamersCommand extends Command {
       await message.channel.send(
         embeds.normal(
           `Streamers List`,
-          configDoc.streamers.join(", ") || `None`
+          configDoc.streamers
+            .map((name, i) => `${i + 1}. ${name}`)
+            .join("\n") ||
+            `No streamers have been set yet! Provide a twitch username to add them to the list.`
         )
       );
     }

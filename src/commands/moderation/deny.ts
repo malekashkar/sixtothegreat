@@ -54,6 +54,13 @@ export default class DenyCommand extends Command {
         } else {
           await suggestionChannel.send(embed);
         }
+
+        await message.channel.send(
+          embeds.normal(
+            `Suggestion Denied`,
+            `The suggestion \`#${suggestionId}\` has been denied.`
+          )
+        );
       }
     }
   }

@@ -54,6 +54,13 @@ export default class ApproveCommand extends Command {
         } else {
           await suggestionChannel.send(embed);
         }
+
+        await message.channel.send(
+          embeds.normal(
+            `Suggestion Approved`,
+            `The suggestion \`#${suggestionId}\` has been approved.`
+          )
+        );
       }
     }
   }

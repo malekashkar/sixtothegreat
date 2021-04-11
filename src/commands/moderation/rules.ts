@@ -1,6 +1,7 @@
 import { DocumentType } from "@typegoose/typegoose";
 import { Message } from "discord.js";
 import Command from "..";
+import config from "../../config";
 import { Config } from "../../models/config";
 import embeds from "../../utils/embeds";
 
@@ -21,13 +22,7 @@ export default class RulesCommand extends Command {
       );
 
     if (configDoc.messageTemplate?.rules) {
-      await rulesChannel.send(
-        embeds
-          .empty()
-          .setImage(
-            "https://cdn.discordapp.com/attachments/781691602045239326/786331465130049546/NoxDiscBanner1_1.png"
-          )
-      );
+      await rulesChannel.send(embeds.empty().setImage(config.images.rules));
       await rulesChannel.send(
         embeds.normal(`Rules`, configDoc.messageTemplate.rules)
       );

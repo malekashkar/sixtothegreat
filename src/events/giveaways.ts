@@ -3,6 +3,7 @@ import { TextChannel, User } from "discord.js";
 import Event, { EventNameType } from ".";
 import config from "../config";
 import { Giveaway, GiveawayModel } from "../models/giveaway";
+import embeds from "../utils/embeds";
 
 export default class Giveaways extends Event {
   eventName: EventNameType = "ready";
@@ -32,27 +33,22 @@ export default class Giveaways extends Event {
 
                 let winners: User[] = [];
                 for (let i = 0; i < endedGiveaway.winners; i++) {
-                  winners.push(
-                    reactors[Math.floor(Math.random() * reactors.length)]
-                  );
+                  const winner =
+                    reactors[Math.floor(Math.random() * reactors.length)];
+                  if (!winners.includes(winner)) {
+                    winners.push(winner);
+                  }
                 }
 
-                const winnersToString = winners
-                  .map((x) => x.toString())
-                  .join(", ");
                 await giveawayMessage.delete();
-                await giveawayChannel.send({
-                  embed: {
-                    color: "AQUA",
-                    author: {
-                      name: `The winner(s) of the ${endedGiveaway.prize} giveaway are...`,
-                      icon_url: this.client.user.displayAvatarURL({
-                        dynamic: true,
-                      }),
-                    },
-                    description: `${winnersToString}! Congrats :tada:\n\nAll winners will recive a DM from a server admin soon.`,
-                  },
-                });
+                await giveawayChannel.send(
+                  embeds.normal(
+                    `The winner(s) of the ${endedGiveaway.prize} giveaway are...`,
+                    `${winners.join(
+                      ", "
+                    )}! Congrats :tada:\n\nAll winners will recive a DM from a server admin soon.`
+                  )
+                );
 
                 await endedGiveaway.deleteOne();
               }
@@ -60,7 +56,7 @@ export default class Giveaways extends Event {
           }
         }
       );
-    }, 10 * 60e3);
+    }, 15e3);
 
     setInterval(async () => {
       const continuousGiveaways = GiveawayModel.find({
@@ -97,7 +93,7 @@ export default class Giveaways extends Event {
           }
         }
       );
-    }, 60e3);
+    }, 10e3);
   }
 }
 

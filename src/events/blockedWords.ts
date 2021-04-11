@@ -18,9 +18,7 @@ export default class BlockedWords extends Event {
       let str = message.content.toLowerCase();
       for (const blockedWord of ConfigDocument.blockedWords) {
         if (str.includes(blockedWord.toLowerCase())) {
-          str = str
-            .split(blockedWord.toLowerCase())
-            .join(" " + "*".repeat(blockedWord.length) + " ");
+          str = str.replace(blockedWord, `\`${"*".repeat(blockedWord.length)}\``);
         }
       }
       if (str !== message.content.toLowerCase()) {

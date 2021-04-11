@@ -1,6 +1,7 @@
 import { DocumentType } from "@typegoose/typegoose";
 import { Message } from "discord.js";
 import Command from "..";
+import config from "../../config";
 import { Config } from "../../models/config";
 import embeds from "../../utils/embeds";
 
@@ -27,11 +28,7 @@ export default class VerifyCommand extends Command {
       configDoc.roles?.verificationRole
     ) {
       await verifycationChannel.send(
-        embeds
-          .empty()
-          .setImage(
-            "https://cdn.discordapp.com/attachments/781691602045239326/786331440526000158/NoxDiscBanner.png"
-          )
+        embeds.empty().setImage(config.images.verification)
       );
       const verificationMessage = await verifycationChannel.send(
         embeds.normal(`Verification`, configDoc.messageTemplate.verification)
