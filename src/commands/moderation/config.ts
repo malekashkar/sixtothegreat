@@ -87,7 +87,7 @@ export default class ConfigCommand extends Command {
       await message.channel.send(
         embeds.normal(
           `Verification Message Set`,
-          `The verification message has been set to:\n\`\`\`${templateMessage}\`\`\``
+          `The verification message has been set to:\n\`\`\`\n${templateMessage}\`\`\``
         )
       );
     } else if (chosenOption === "welcome_message") {
@@ -109,7 +109,7 @@ export default class ConfigCommand extends Command {
       await message.channel.send(
         embeds.normal(
           `Welcome Message Set`,
-          `The welcome message has been set to:\n\`\`\`${templateMessage}\`\`\``
+          `The welcome message has been set to:\n\`\`\`\n${templateMessage}\`\`\``
         )
       );
     } else if (chosenOption === "rules_message") {
@@ -131,7 +131,7 @@ export default class ConfigCommand extends Command {
       await message.channel.send(
         embeds.normal(
           `Rules Message Set`,
-          `The rules message has been set to:\n\`\`\`${templateMessage}\`\`\``
+          `The rules message has been set to:\n\`\`\`\n${templateMessage}\`\`\``
         )
       );
     } else if (chosenOption === "twitch_notification_channel") {

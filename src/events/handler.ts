@@ -16,11 +16,7 @@ export default class CommandHandler extends Event {
       if (!prefix || message.content.toLowerCase().indexOf(prefix) !== 0)
         return;
 
-      const args = message.content
-        .slice(prefix.length)
-        .trim()
-        .replace(/ /g, "\n")
-        .split(/\n+/g);
+      const args = message.content.slice(prefix.length).trim().split(/ /g);
       const command = args.shift().toLowerCase();
 
       const ConfigDocument =
