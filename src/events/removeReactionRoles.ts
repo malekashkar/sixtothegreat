@@ -1,6 +1,6 @@
 import { MessageReaction, User } from "discord.js";
 import Event, { EventNameType } from ".";
-import { ReactionRoleModel } from "../models/reactionRole";
+import { ConfigModel } from "../models/config";
 
 export default class AddReactionRoles extends Event {
   eventName: EventNameType = "messageReactionRemove";
@@ -10,11 +10,11 @@ export default class AddReactionRoles extends Event {
     if (reaction.message.partial) await reaction.message.fetch();
 
     const message = reaction.message;
-    const reactionData = await ReactionRoleModel.findOne({
-      messageId: message.id,
+    const configData = await ConfigModel.findOne({
+      guildId: message.guild.id,
     });
-    if (reactionData) {
-      const roleInfo = reactionData.roles.find(
+    if (configData?.reactionRoles?.length) {
+      const roleInfo = configData?.reactionRoles.find(
         (roleInfo) => roleInfo.reaction === reaction.emoji.name
       );
       if (roleInfo) {

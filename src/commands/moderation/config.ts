@@ -1,5 +1,5 @@
 import { DocumentType } from "@typegoose/typegoose";
-import { Message } from "discord.js";
+import { Message, TextChannel } from "discord.js";
 import Command from "..";
 import { Config } from "../../models/config";
 import embeds from "../../utils/embeds";
@@ -84,6 +84,35 @@ export default class ConfigCommand extends Command {
       }
       await configDoc.save();
 
+      if (
+        configDoc.channels?.verification &&
+        configDoc.messageIds?.verification
+      ) {
+        const channel = message.guild.channels.resolve(
+          configDoc.channels.verification
+        ) as TextChannel;
+        if (channel) {
+          const msg = await channel.messages.fetch(
+            configDoc.messageIds.verification
+          );
+          if (msg) {
+            await msg.edit(
+              embeds.normal(
+                `Verification`,
+                configDoc.messageTemplate.verification
+              )
+            );
+          } else {
+            await channel.send(
+              embeds.normal(
+                `Verification`,
+                configDoc.messageTemplate.verification
+              )
+            );
+          }
+        }
+      }
+
       await message.channel.send(
         embeds.normal(
           `Verification Message Set`,
@@ -106,6 +135,26 @@ export default class ConfigCommand extends Command {
       }
       await configDoc.save();
 
+      if (configDoc.channels?.welcome && configDoc.messageIds?.welcome) {
+        const channel = message.guild.channels.resolve(
+          configDoc.channels.welcome
+        ) as TextChannel;
+        if (channel) {
+          const msg = await channel.messages.fetch(
+            configDoc.messageIds.welcome
+          );
+          if (msg) {
+            await msg.edit(
+              embeds.normal(`Welcome`, configDoc.messageTemplate.welcome)
+            );
+          } else {
+            await channel.send(
+              embeds.normal(`Welcome`, configDoc.messageTemplate.welcome)
+            );
+          }
+        }
+      }
+
       await message.channel.send(
         embeds.normal(
           `Welcome Message Set`,
@@ -127,6 +176,24 @@ export default class ConfigCommand extends Command {
         };
       }
       await configDoc.save();
+
+      if (configDoc.channels?.rules && configDoc.messageIds?.rules) {
+        const channel = message.guild.channels.resolve(
+          configDoc.channels.rules
+        ) as TextChannel;
+        if (channel) {
+          const msg = await channel.messages.fetch(configDoc.messageIds.rules);
+          if (msg) {
+            await msg.edit(
+              embeds.normal(`Rules`, configDoc.messageTemplate.rules)
+            );
+          } else {
+            await channel.send(
+              embeds.normal(`Rules`, configDoc.messageTemplate.rules)
+            );
+          }
+        }
+      }
 
       await message.channel.send(
         embeds.normal(

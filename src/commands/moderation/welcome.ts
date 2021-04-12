@@ -23,9 +23,13 @@ export default class WelcomeCommand extends Command {
 
     if (configDoc.messageTemplate?.welcome) {
       await welcomeChannel.send(embeds.empty().setImage(config.images.welcome));
-      await welcomeChannel.send(
+      const welcomeMessage = await welcomeChannel.send(
         embeds.normal(`Welcome`, configDoc.messageTemplate.welcome)
       );
+
+      configDoc.channels.welcome = welcomeChannel.id;
+      configDoc.messageIds.welcome = welcomeMessage.id;
+      await configDoc.save();
     } else {
       return message.channel.send(
         embeds.error(

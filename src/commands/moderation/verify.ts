@@ -35,13 +35,8 @@ export default class VerifyCommand extends Command {
       );
       await verificationMessage.react("✅");
 
-      if (configDoc.messageIds) {
-        configDoc.messageIds.verificationMessageId = verificationMessage.id;
-      } else {
-        configDoc.messageIds = {
-          verificationMessageId: verificationMessage.id,
-        };
-      }
+      configDoc.channels.verification = verifycationChannel.id;
+      configDoc.messageIds.verification = verificationMessage.id;
       await configDoc.save();
     } else {
       return message.channel.send(

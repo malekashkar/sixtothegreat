@@ -6,6 +6,18 @@ export class Channels {
 
   @prop()
   suggestions?: string;
+
+  @prop()
+  welcome?: string;
+
+  @prop()
+  rules?: string;
+
+  @prop()
+  roles?: string;
+
+  @prop()
+  verification?: string;
 }
 
 export class MessageTemplates {
@@ -21,7 +33,19 @@ export class MessageTemplates {
 
 export class MessageIds {
   @prop()
-  verificationMessageId?: string;
+  verification?: string;
+
+  @prop()
+  suggestions?: string;
+
+  @prop()
+  welcome?: string;
+
+  @prop()
+  rules?: string;
+
+  @prop()
+  roles?: string;
 }
 
 export class Roles {
@@ -32,9 +56,22 @@ export class Roles {
   notificationRole?: string;
 }
 
+export class Reactions {
+  @prop()
+  reaction: string;
+
+  @prop()
+  roleId: string;
+
+  @prop()
+  roleDescription: string;
+}
+
 export class Config {
   @prop()
   guildId: string;
+
+  /////////////////////////////
 
   @prop({ type: String, default: [] })
   blockedChannels?: string[];
@@ -45,16 +82,21 @@ export class Config {
   @prop({ type: String, default: [] })
   streamers?: string[];
 
-  @prop({ type: Channels })
+  @prop({ type: Reactions, default: [] })
+  reactionRoles?: Reactions[];
+
+  /////////////////////////////
+
+  @prop({ type: Channels, default: {} })
   channels?: Channels;
 
-  @prop({ type: MessageTemplates })
+  @prop({ type: MessageTemplates, default: {} })
   messageTemplate?: MessageTemplates;
 
-  @prop({ type: MessageIds })
+  @prop({ type: MessageIds, default: {} })
   messageIds?: MessageIds;
 
-  @prop({ type: Roles })
+  @prop({ type: Roles, default: {} })
   roles?: Roles;
 }
 

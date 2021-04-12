@@ -16,9 +16,9 @@ export default class Verification extends Event {
     if (configDoc) {
       if (
         configDoc.roles?.verificationRole &&
-        configDoc.messageIds?.verificationMessageId
+        configDoc.messageIds?.verification
       ) {
-        if (configDoc.messageIds.verificationMessageId === message.id) {
+        if (configDoc.messageIds.verification === message.id) {
           const member = message.guild.members.resolve(user);
           if (!member?.roles.cache.has(configDoc.roles.verificationRole))
             await member.roles.add(configDoc.roles.verificationRole);

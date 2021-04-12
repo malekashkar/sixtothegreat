@@ -23,9 +23,13 @@ export default class RulesCommand extends Command {
 
     if (configDoc.messageTemplate?.rules) {
       await rulesChannel.send(embeds.empty().setImage(config.images.rules));
-      await rulesChannel.send(
+      const rulesMessage = await rulesChannel.send(
         embeds.normal(`Rules`, configDoc.messageTemplate.rules)
       );
+
+      configDoc.channels.rules = rulesChannel.id;
+      configDoc.messageIds.rules = rulesMessage.id;
+      await configDoc.save();
     } else {
       return message.channel.send(
         embeds.error(
