@@ -32,6 +32,9 @@ export default class RolesCommand extends Command {
       const rolesMessage = await rolesChannel.send(
         embeds.normal(`React to get a role!`, formattedRoles)
       );
+      for (const reaction of configDoc.reactionRoles.map((x) => x.reaction)) {
+        await rolesMessage.react(reaction);
+      }
 
       configDoc.channels.roles = rolesChannel.id;
       configDoc.messageIds.roles = rolesMessage.id;

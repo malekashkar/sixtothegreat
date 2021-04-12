@@ -157,15 +157,18 @@ async function continueProcess(
       configDoc.channels.roles
     ) as TextChannel;
     if (reactionRolesChannel) {
-      const msg = await reactionRolesChannel.messages.fetch(
+      let msg = await reactionRolesChannel.messages.fetch(
         configDoc.messageIds.roles
       );
       if (msg) {
         await msg.edit(embeds.normal(`React to get a role!`, formattedRoles));
       } else {
-        await reactionRolesChannel.send(
+        msg = await reactionRolesChannel.send(
           embeds.normal(`React to get a role!`, formattedRoles)
         );
+      }
+      for (const reaction of configDoc.reactionRoles.map((x) => x.reaction)) {
+        await msg.react(reaction);
       }
     }
   }
