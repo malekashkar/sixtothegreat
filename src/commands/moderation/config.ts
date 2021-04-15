@@ -7,6 +7,7 @@ import embeds from "../../utils/embeds";
 export default class ConfigCommand extends Command {
   cmdName = "config";
   description = "Configurate some of the options included in the bot.";
+  adminPermissions = true;
 
   async run(message: Message, args: string[], configDoc: DocumentType<Config>) {
     const configOptions = [

@@ -7,6 +7,7 @@ import embeds from "../../utils/embeds";
 export default class StreamersCommand extends Command {
   cmdName = "streamers";
   description = "List/add/remove streamers from the twitch notifications list.";
+  adminPermissions = true;
 
   async run(message: Message, args: string[], configDoc: DocumentType<Config>) {
     const streamer = args[0];
