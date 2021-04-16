@@ -38,6 +38,7 @@ export default class GiveawayCommand extends Command {
 
     await giveawayMessage.react(config.giveawayReactionEmoji);
     await GiveawayModel.create({
+      guildId: message.guild.id,
       channelId: message.channel.id,
       messageId: giveawayMessage.id,
       endTime: Date.now() + timeframe,
