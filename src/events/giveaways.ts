@@ -16,7 +16,7 @@ export default class Giveaways extends Event {
       endedGiveaways.on(
         "data",
         async (endedGiveaway: DocumentType<Giveaway>) => {
-          const guild = await this.client.guilds.fetch(config.mainGuildId);
+          const guild = await this.client.guilds.fetch(endedGiveaway.guildId);
           if (guild) {
             const giveawayChannel = guild.channels.resolve(
               endedGiveaway.channelId
@@ -65,7 +65,7 @@ export default class Giveaways extends Event {
       continuousGiveaways.on(
         "data",
         async (continuousGiveaway: DocumentType<Giveaway>) => {
-          const guild = await this.client.guilds.fetch(config.mainGuildId);
+          const guild = await this.client.guilds.fetch(continuousGiveaway.guildId);
           if (guild) {
             const giveawayChannel = guild.channels.resolve(
               continuousGiveaway.channelId

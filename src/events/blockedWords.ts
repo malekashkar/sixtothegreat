@@ -8,7 +8,7 @@ export default class BlockedWords extends Event {
 
   async handle(message: Message) {
     const ConfigDocument = await ConfigModel.findOne({
-      guildId: config.mainGuildId,
+      guildId: message.guild.id,
     });
     if (
       ConfigDocument?.blockedWords?.length &&

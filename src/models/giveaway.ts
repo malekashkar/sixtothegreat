@@ -2,6 +2,9 @@ import { getModelForClass, prop } from "@typegoose/typegoose";
 
 export class Giveaway {
   @prop()
+  guildId: string;
+
+  @prop()
   channelId: string;
 
   @prop()
