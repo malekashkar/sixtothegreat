@@ -11,6 +11,8 @@ export default class GiveawayCommand extends Command {
   adminPermissions = true;
 
   async run(message: Message, args: string[]) {
+    message.delete();
+    
     const timeframe = args[0] ? ms(args.shift()) : null;
     if (!timeframe)
       return message.channel.send(

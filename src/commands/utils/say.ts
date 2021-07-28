@@ -7,6 +7,8 @@ export default class SayCommand extends Command {
   adminPermissions = true;
 
   async run(message: Message, args: string[]) {
+    message.delete();
+
     if (args.length) await message.channel.send(args.join(" "));
   }
 }

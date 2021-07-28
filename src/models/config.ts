@@ -98,6 +98,9 @@ export class Config {
 
   @prop({ type: Roles, default: {} })
   roles?: Roles;
+
+  @prop({ type: Boolean, default: false })
+  maintenance?: boolean;
 }
 
 export const ConfigModel = getModelForClass(Config);

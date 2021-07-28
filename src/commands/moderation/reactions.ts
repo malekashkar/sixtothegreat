@@ -4,6 +4,7 @@ import { Message, MessageReaction, TextChannel, User } from "discord.js";
 import Command from "..";
 import { Config } from "../../models/config";
 import embeds from "../../utils/embeds";
+import { updateReactionRoles } from "../../utils/reactions";
 
 export default class ReactionsCommand extends Command {
   cmdName = "reactions";
@@ -146,30 +147,5 @@ async function continueProcess(
     );
   }
 
-  if (configDoc.channels?.roles && configDoc.messageIds?.roles) {
-    const formattedRoles = configDoc.reactionRoles
-      .map(
-        (roleInfo) =>
-          `${roleInfo.reaction} <@&${roleInfo.roleId}> ~ ${roleInfo.roleDescription}`
-      )
-      .join("\n\n");
-    const reactionRolesChannel = channel.guild.channels.resolve(
-      configDoc.channels.roles
-    ) as TextChannel;
-    if (reactionRolesChannel) {
-      let msg = await reactionRolesChannel.messages.fetch(
-        configDoc.messageIds.roles
-      );
-      if (msg) {
-        await msg.edit(embeds.normal(`React to get a role!`, formattedRoles));
-      } else {
-        msg = await reactionRolesChannel.send(
-          embeds.normal(`React to get a role!`, formattedRoles)
-        );
-      }
-      for (const reaction of configDoc.reactionRoles.map((x) => x.reaction)) {
-        await msg.react(reaction);
-      }
-    }
-  }
+  updateReactionRoles(configDoc, channel.guild);
 }

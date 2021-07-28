@@ -39,7 +39,6 @@ export default class CommandHandler extends Event {
           )
             return;
 
-          // await message.delete();
           commandObj
             .run(message, args, ConfigDocument)
             .catch((err) =>

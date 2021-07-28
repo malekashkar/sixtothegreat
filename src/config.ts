@@ -12,4 +12,7 @@ export default {
       "https://cdn.discordapp.com/attachments/781691602045239326/786331440526000158/NoxDiscBanner.png",
     roles: "https://i.ibb.co/zZTkVsF/Sixto-Roles.png",
   },
+  roles: {
+    dreamers: "869270505973231626"
+  }
 };
