@@ -5,13 +5,13 @@ import config from "../../config";
 import { Config } from "../../models/config";
 import embeds from "../../utils/embeds";
 
-export default class ApproveCommand extends Command {
-  cmdName = "approve";
-  description = "Approve one of the suggestions by their message ID.";
+export default class MaintenanceCommand extends Command {
+  cmdName = "maintenance";
+  description = "Turn maintenance mode on or off.";
   adminPermissions = true;
 
   async run(message: Message, args: string[], configDoc: DocumentType<Config>) {
-    const dreamersRole = message.guild.roles.cache.get(config.roles.dreamers)
+    const dreamersRole = message.guild.roles.cache.get(config.roles.dreamers);
     message.guild.channels.cache.forEach(async(channel) => {
       await channel.createOverwrite(dreamersRole, {
         SEND_MESSAGES: !configDoc.maintenance
