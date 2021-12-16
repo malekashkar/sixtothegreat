@@ -5,7 +5,7 @@ import { Config, ConfigModel } from "../models/config";
 import { StreamModel } from "../models/streams";
 import embeds from "../utils/embeds";
 
-export default class Giveaways extends Event {
+export default class twitch extends Event {
   eventName: EventNameType = "ready";
 
   async handle() {
@@ -34,6 +34,7 @@ export default class Giveaways extends Event {
                     streamId: streamData.id,
                   });
                   if (!StreamDocument) {
+                    /*
                     const channelInformation = await this.client.twitch.getChannelInformation(
                       { broadcaster_id: streamData.user_id }
                     );
@@ -48,6 +49,7 @@ export default class Giveaways extends Event {
                     await StreamModel.create({
                       streamId: streamData.id,
                     });
+                    */
                   }
                 }
               }
